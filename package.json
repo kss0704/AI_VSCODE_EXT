@@ -1,0 +1,226 @@
+{
+  "name": "ai-code-assistant",
+  "displayName": "AI Code Assistant",
+  "description": "Advanced AI-powered code completion and generation with multiple providers",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Snippets"
+  ],
+  "keywords": [
+    "ai",
+    "copilot",
+    "code-completion",
+    "code-generation",
+    "groq",
+    "perplexity",
+    "ollama"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiCodeAssistant.generateProject",
+        "title": "Generate Project Structure",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.explainCode",
+        "title": "Explain Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.optimizeCode",
+        "title": "Optimize Code",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.generateTests",
+        "title": "Generate Tests",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.toggleInlineCompletion",
+        "title": "Toggle Inline Completion",
+        "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.showChatPanel",
+        "title": "Show AI Chat",
+        "category": "AI Assistant"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "aiCodeAssistant.generateProject",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      },
+      {
+        "command": "aiCodeAssistant.showChatPanel",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "aiCodeAssistant.explainCode",
+          "when": "editorHasSelection",
+          "group": "aiassistant"
+        },
+        {
+          "command": "aiCodeAssistant.optimizeCode",
+          "when": "editorHasSelection",
+          "group": "aiassistant"
+        },
+        {
+          "command": "aiCodeAssistant.generateTests",
+          "when": "editorTextFocus",
+          "group": "aiassistant"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Code Assistant",
+      "properties": {
+        "aiCodeAssistant.provider": {
+          "type": "string",
+          "default": "groq",
+          "enum": ["groq", "perplexity", "huggingface", "ollama", "togetherai", "replicate"],
+          "description": "Selected AI provider"
+        },
+        "aiCodeAssistant.groq.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Groq API Key"
+        },
+        "aiCodeAssistant.groq.model": {
+          "type": "string",
+          "default": "llama3-70b-8192",
+          "enum": ["llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768", "gemma-7b-it"],
+          "description": "Groq model to use"
+        },
+        "aiCodeAssistant.perplexity.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Perplexity API Key"
+        },
+        "aiCodeAssistant.perplexity.model": {
+          "type": "string",
+          "default": "llama-3.1-sonar-large-128k-online",
+          "enum": ["llama-3.1-sonar-large-128k-online", "llama-3.1-sonar-small-128k-online", "llama-3.1-70b-instruct", "llama-3.1-8b-instruct"],
+          "description": "Perplexity model to use"
+        },
+        "aiCodeAssistant.huggingface.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "HuggingFace API Key"
+        },
+        "aiCodeAssistant.huggingface.model": {
+          "type": "string",
+          "default": "microsoft/DialoGPT-large",
+          "description": "HuggingFace model to use"
+        },
+        "aiCodeAssistant.ollama.baseUrl": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "Ollama base URL"
+        },
+        "aiCodeAssistant.ollama.model": {
+          "type": "string",
+          "default": "codellama",
+          "description": "Ollama model to use"
+        },
+        "aiCodeAssistant.togetherai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Together AI API Key"
+        },
+        "aiCodeAssistant.togetherai.model": {
+          "type": "string",
+          "default": "meta-llama/Llama-2-70b-chat-hf",
+          "description": "Together AI model to use"
+        },
+        "aiCodeAssistant.replicate.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Replicate API Key"
+        },
+        "aiCodeAssistant.replicate.model": {
+          "type": "string",
+          "default": "meta/llama-2-70b-chat",
+          "description": "Replicate model to use"
+        },
+        "aiCodeAssistant.enableInlineCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable inline code completion"
+        },
+        "aiCodeAssistant.maxTokens": {
+          "type": "number",
+          "default": 2048,
+          "description": "Maximum tokens for completion"
+        },
+        "aiCodeAssistant.temperature": {
+          "type": "number",
+          "default": 0.1,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Temperature for AI responses"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "aiCodeAssistant.projectFiles",
+          "name": "Generated Files",
+          "when": "aiCodeAssistant.hasGeneratedFiles"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "panel": [
+        {
+          "id": "aiCodeAssistant",
+          "title": "AI Assistant",
+          "icon": "$(robot)"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "groq-sdk": "^0.3.0",
+    "langchain": "^0.1.0",
+    "@huggingface/inference": "^2.6.0"
+  }
+}
