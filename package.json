@@ -3,7 +3,7 @@
   "displayName": "AI Code Assistant",
   "description": "Advanced AI-powered code completion and generation with multiple providers",
   "version": "1.0.0",
-  "publisher": "your-publisher-name",
+  "publisher": "Sai Sravanth",
   "engines": {
     "vscode": "^1.74.0"
   },
