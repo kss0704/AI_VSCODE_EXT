@@ -56,6 +56,11 @@
         "command": "aiCodeAssistant.showChatPanel",
         "title": "Show AI Chat",
         "category": "AI Assistant"
+      },
+      {
+        "command": "aiCodeAssistant.saveProject",
+        "title": "Save Generated Project",
+        "category": "AI Assistant"
       }
     ],
     "keybindings": [
@@ -86,6 +91,13 @@
           "command": "aiCodeAssistant.generateTests",
           "when": "editorTextFocus",
           "group": "aiassistant"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "aiCodeAssistant.saveProject",
+          "when": "view == aiCodeAssistant.projectFiles",
+          "group": "navigation"
         }
       ]
     },
@@ -194,6 +206,16 @@
           "id": "aiCodeAssistant",
           "title": "AI Assistant",
           "icon": "$(robot)"
+        }
+      ]
+    },
+    "views": {
+      "aiCodeAssistant": [
+        {
+          "type": "webview",
+          "id": "aiCodeAssistant.chatPanel",
+          "name": "AI Chat",
+          "when": "aiCodeAssistant.activated"
         }
       ]
     }
