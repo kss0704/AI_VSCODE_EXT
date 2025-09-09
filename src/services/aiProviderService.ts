@@ -96,7 +96,7 @@ export class AIProviderService implements vscode.Disposable {
         }
 
         const config = vscode.workspace.getConfiguration('aiCodeAssistant');
-        const model = config.get<string>('groq.model', 'llama3-70b-8192');
+        const model = config.get<string>('groq.model', 'llama-3.3-70b-versatile');
 
         const completion = await this.groqClient.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
@@ -248,10 +248,10 @@ export class AIProviderService implements vscode.Disposable {
         
         const models: { [key: string]: ModelInfo[] } = {
             groq: [
-                { id: 'llama3-70b-8192', name: 'Llama 3 70B', description: 'Large context window model' },
-                { id: 'llama3-8b-8192', name: 'Llama 3 8B', description: 'Fast and efficient model' },
-                { id: 'mixtral-8x7b-32768', name: 'Mixtral 8x7B', description: 'Mixture of experts model' },
-                { id: 'gemma-7b-it', name: 'Gemma 7B IT', description: 'Instruction-tuned model' },
+                { id: 'llama-3.3-70b-versatile', name: 'Llama 3 70B', description: 'Large context window model' },
+                { id: 'llama-3.1-8b-instant', name: 'Llama 3 8B', description: 'Fast and efficient model' },
+                { id: 'mistral-saba-24b', name: 'Mistral 24B', description: 'Mixture of experts model' },
+                { id: 'gemma2-9b-it', name: 'Gemma 9B IT', description: 'Instruction-tuned model' },
             ],
             perplexity: [
                 { id: 'llama-3.1-sonar-large-128k-online', name: 'Llama 3.1 Sonar Large', description: 'Online model with web access' },
