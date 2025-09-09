@@ -172,7 +172,7 @@ Generate a comprehensive, executable project structure:`;
         });
 
         for (const file of files) {
-            const pathParts = file.path.split('/').filter(p => p);
+            const pathParts = file.path.split('/').filter((p: string) => p);
             
             if (file.type === 'folder') {
                 const folderFile: GeneratedFile = {
