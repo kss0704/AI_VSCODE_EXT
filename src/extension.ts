@@ -23,14 +23,15 @@ export function activate(context: vscode.ExtensionContext) {
         inlineProvider
     );
 
-    // Register comment completion provider
+    // Register comment completion provider and its command
     const commentCompletionDisposable = vscode.languages.registerCompletionItemProvider(
         { pattern: '**' },
         commentProvider,
         '/', '*'
     );
+    CommentCompletionProvider.registerCommand(context, aiService);
 
-    // Register webview panel
+    // Register webview panel for chat
     const chatPanelDisposable = vscode.window.registerWebviewViewProvider(
         'aiCodeAssistant.chatPanel',
         chatProvider
@@ -176,6 +177,15 @@ export function activate(context: vscode.ExtensionContext) {
         }
     );
 
+    // Add project save command
+    const saveProjectCommand = vscode.commands.registerCommand(
+        'aiCodeAssistant.saveProject',
+        async () => {
+            // This will be handled by the ProjectGeneratorProvider
+            vscode.commands.executeCommand('aiCodeAssistant.saveProject');
+        }
+    );
+
     // Add all disposables to context
     context.subscriptions.push(
         inlineCompletionDisposable,
@@ -188,6 +198,7 @@ export function activate(context: vscode.ExtensionContext) {
         generateTestsCommand,
         toggleInlineCompletionCommand,
         showChatPanelCommand,
+        saveProjectCommand,
         aiService
     );
 
