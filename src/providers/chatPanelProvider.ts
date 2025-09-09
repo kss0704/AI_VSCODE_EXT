@@ -151,8 +151,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 body {
                     font-family: var(--vscode-font-family);
                     font-size: var(--vscode-font-size);
-                    color: var(--vscode-foreground);
-                    background-color: var(--vscode-editor-background);
+                    color: white;
+                    background-color: black;
                     margin: 0;
                     padding: 10px;
                     display: flex;
@@ -171,8 +171,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 }
 
                 select {
-                    background-color: var(--vscode-dropdown-background);
-                    color: var(--vscode-dropdown-foreground);
+                    background-color: black;
+                    color: white;
                     border: 1px solid var(--vscode-dropdown-border);
                     padding: 5px;
                     width: 100%;
@@ -200,19 +200,19 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
 
                 .user-message {
                     align-self: flex-end;
-                    background-color: var(--vscode-button-background);
-                    color: var(--vscode-button-foreground);
+                    background-color: black;
+                    color: white;
                 }
 
                 .assistant-message {
                     align-self: flex-start;
-                    background-color: var(--vscode-editor-selectionBackground);
+                    background-color: black;
                     border: 1px solid var(--vscode-panel-border);
                 }
 
                 .thinking {
                     align-self: flex-start;
-                    background-color: var(--vscode-editor-selectionBackground);
+                    background-color: black;
                     border: 1px solid var(--vscode-panel-border);
                     font-style: italic;
                     opacity: 0.7;
@@ -220,8 +220,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
 
                 .error-message {
                     align-self: center;
-                    background-color: var(--vscode-errorForeground);
-                    color: var(--vscode-editor-background);
+                    background-color: white;
+                    color: red;
                     text-align: center;
                 }
 
@@ -232,8 +232,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
 
                 textarea {
                     flex: 1;
-                    background-color: var(--vscode-input-background);
-                    color: var(--vscode-input-foreground);
+                    background-color: black;
+                    color: white;
                     border: 1px solid var(--vscode-input-border);
                     border-radius: 3px;
                     padding: 8px;
@@ -244,8 +244,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 }
 
                 button {
-                    background-color: var(--vscode-button-background);
-                    color: var(--vscode-button-foreground);
+                    background-color: black;
+                    color: white;
                     border: none;
                     padding: 8px 15px;
                     border-radius: 3px;
@@ -254,7 +254,7 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 }
 
                 button:hover {
-                    background-color: var(--vscode-button-hoverBackground);
+                    background-color: black;
                 }
 
                 button:disabled {
@@ -263,8 +263,8 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 }
 
                 .clear-button {
-                    background-color: var(--vscode-button-secondaryBackground);
-                    color: var(--vscode-button-secondaryForeground);
+                    background-color: black;
+                    color: white;
                     margin-top: 5px;
                     width: 100%;
                 }
@@ -278,7 +278,7 @@ export class ChatPanelProvider implements vscode.WebviewViewProvider {
                 }
 
                 code {
-                    background-color: var(--vscode-textCodeBlock-background);
+                    background-color: white;
                     padding: 2px 4px;
                     border-radius: 3px;
                     font-family: var(--vscode-editor-font-family);
