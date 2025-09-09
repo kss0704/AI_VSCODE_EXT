@@ -4,6 +4,14 @@
   "description": "Advanced AI-powered code completion and generation with multiple providers",
   "version": "1.0.0",
   "publisher": "Sai-Sravanth",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kss0704/AI_VSCODE_EXT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kss0704/AI_VSCODE_EXT/issues"
+  },
+  "homepage": "https://github.com/kss0704/AI_VSCODE_EXT#readme",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -107,7 +115,14 @@
         "aiCodeAssistant.provider": {
           "type": "string",
           "default": "groq",
-          "enum": ["groq", "perplexity", "huggingface", "ollama", "togetherai", "replicate"],
+          "enum": [
+            "groq",
+            "perplexity",
+            "huggingface",
+            "ollama",
+            "togetherai",
+            "replicate"
+          ],
           "description": "Selected AI provider"
         },
         "aiCodeAssistant.groq.apiKey": {
@@ -118,7 +133,12 @@
         "aiCodeAssistant.groq.model": {
           "type": "string",
           "default": "llama3-70b-8192",
-          "enum": ["llama3-70b-8192", "llama3-8b-8192", "mixtral-8x7b-32768", "gemma-7b-it"],
+          "enum": [
+            "llama3-70b-8192",
+            "llama3-8b-8192",
+            "mixtral-8x7b-32768",
+            "gemma-7b-it"
+          ],
           "description": "Groq model to use"
         },
         "aiCodeAssistant.perplexity.apiKey": {
@@ -129,7 +149,12 @@
         "aiCodeAssistant.perplexity.model": {
           "type": "string",
           "default": "llama-3.1-sonar-large-128k-online",
-          "enum": ["llama-3.1-sonar-large-128k-online", "llama-3.1-sonar-small-128k-online", "llama-3.1-70b-instruct", "llama-3.1-8b-instruct"],
+          "enum": [
+            "llama-3.1-sonar-large-128k-online",
+            "llama-3.1-sonar-small-128k-online",
+            "llama-3.1-70b-instruct",
+            "llama-3.1-8b-instruct"
+          ],
           "description": "Perplexity model to use"
         },
         "aiCodeAssistant.huggingface.apiKey": {
@@ -192,11 +217,12 @@
       }
     },
     "views": {
-      "explorer": [
+      "aiCodeAssistant": [
         {
-          "id": "aiCodeAssistant.projectFiles",
-          "name": "Generated Files",
-          "when": "aiCodeAssistant.hasGeneratedFiles"
+          "type": "webview",
+          "id": "aiCodeAssistant.chatPanel",
+          "name": "AI Chat",
+          "when": "aiCodeAssistant.activated"
         }
       ]
     },
@@ -206,16 +232,6 @@
           "id": "aiCodeAssistant",
           "title": "AI Assistant",
           "icon": "$(robot)"
-        }
-      ]
-    },
-    "views": {
-      "aiCodeAssistant": [
-        {
-          "type": "webview",
-          "id": "aiCodeAssistant.chatPanel",
-          "name": "AI Chat",
-          "when": "aiCodeAssistant.activated"
         }
       ]
     }
@@ -230,19 +246,19 @@
     "package": "vsce package"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
     "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
-    "eslint": "^8.28.0",
-    "typescript": "^4.9.4",
     "@vscode/test-electron": "^2.2.0",
-    "@vscode/vsce": "^2.15.0"
+    "@vscode/vsce": "^2.15.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.6.0",
     "axios": "^1.6.0",
     "groq-sdk": "^0.3.0",
-    "langchain": "^0.1.0",
-    "@huggingface/inference": "^2.6.0"
+    "langchain": "^0.3.33"
   }
 }
